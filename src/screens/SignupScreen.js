@@ -20,7 +20,16 @@ export default function SignupScreen() {
     setLoading(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      Alert.alert('Success', 'Account created successfully!');
+      //  Save additional user data to Firestore
+      await setDoc(doc(db, 'users', userCredential.user.uid), {
+        email: email,
+        createdAt: new Date(),
+        // Add other fields as needed:
+        name: '', 
+        preferences: {}
+      });
+
+      // Alert.alert('Success', 'Account created successfully!');
       navigation.navigate('Home');
     } catch (error) {
       let errorMessage = 'Signup failed. Please try again.';

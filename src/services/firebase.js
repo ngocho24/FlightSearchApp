@@ -1,14 +1,17 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import Constants from 'expo-constants';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBHYquupp0vzYsVkvxyc1zYfSq-gRHJeLU",
-  authDomain: "flightsearchapp-a2851.firebaseapp.com",
-  projectId: "flightsearchapp-a2851",
-  storageBucket: "flightsearchapp-a2851.firebasestorage.app",
-  messagingSenderId: "375694821240",
-  appId: "1:375694821240:android:e896a508a8cabf49db6a8d"
+  apiKey: Constants.expoConfig.extra.FIREBASE_API_KEY,
+  authDomain: Constants.expoConfig.extra.FIREBASE_AUTH_DOMAIN,
+  projectId: Constants.expoConfig.extra.FIREBASE_PROJECT_ID,
+  storageBucket: Constants.expoConfig.extra.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: Constants.expoConfig.extra.FIREBASE_MESSAGING_SENDER_ID,
+  appId: Constants.expoConfig.extra.FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
