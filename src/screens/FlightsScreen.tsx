@@ -1,12 +1,12 @@
 // src/screens/FlightsScreen.tsx
 import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import SearchForm from '../components/SearchForm';
 import FlightList from '../components/FlightList';
-import { searchFlights } from '../services/mockFlights'; 
+import { searchFlights } from '../services/mockFlights';
+import { Flight } from '../types/flights';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { Flight } from '@/types/flights';
 
 type Props = StackScreenProps<RootStackParamList, 'Flights'>;
 
@@ -15,11 +15,11 @@ export default function FlightsScreen({ navigation }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSearch = async (params: { from: string; to: string; date: string }) => {
+  const handleSearch = async () => {
     setLoading(true);
     setError('');
     try {
-      const results = await searchFlights(); // mock doesn't need params
+      const results = await searchFlights();
       setFlights(results);
     } catch (e) {
       setError('Failed to fetch flights. Please try again.');
@@ -33,7 +33,8 @@ export default function FlightsScreen({ navigation }: Props) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>Find your next flight ✈️</Text>
       <SearchForm onSearch={handleSearch} />
       {loading && <Text style={styles.status}>Loading flights...</Text>}
       {error ? (
@@ -41,12 +42,19 @@ export default function FlightsScreen({ navigation }: Props) {
       ) : (
         <FlightList flights={flights} onSelectFlight={handleSelectFlight} />
       )}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  status: { textAlign: 'center', marginTop: 10 },
+  container: { flex: 1, backgroundColor: '#f9fafb', padding: 10 },
+  title: {
+    fontSize: 22,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginVertical: 10,
+    color: '#2089dc',
+  },
+  status: { textAlign: 'center', marginTop: 10, color: '#333' },
   error: { color: 'red' },
 });

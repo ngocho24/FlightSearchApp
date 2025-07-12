@@ -10,11 +10,12 @@ export default function FlightList({ flights, onSelectFlight }: { flights: Fligh
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity onPress={() => onSelectFlight(item)}>
-          <ListItem bottomDivider>
-            <Avatar source={{ uri: item.airline.logo || 'https://placeholder.com/logo.png' }} />
+          <ListItem containerStyle={styles.item} bottomDivider>
+            <Avatar source={{ uri: item.airline.logo }} />
             <ListItem.Content>
-              <ListItem.Title>{`${item.airline.name} – ${item.departure.airport} → ${item.arrival.airport}`}</ListItem.Title>
-              <ListItem.Subtitle>{`Price: $${item.price}`}</ListItem.Subtitle>
+              <ListItem.Title style={styles.title}>{item.airline.name}</ListItem.Title>
+              <ListItem.Subtitle>{`${item.departure.airport} → ${item.arrival.airport}`}</ListItem.Subtitle>
+              <ListItem.Subtitle style={styles.price}>${item.price}</ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron />
           </ListItem>
@@ -25,4 +26,9 @@ export default function FlightList({ flights, onSelectFlight }: { flights: Fligh
   );
 }
 
-const styles = StyleSheet.create({ list: { marginTop: 10 } });
+const styles = StyleSheet.create({
+  list: { marginTop: 10 },
+  item: { borderRadius: 8, marginVertical: 5, backgroundColor: '#fff' },
+  title: { fontWeight: '600' },
+  price: { color: '#2089dc', marginTop: 4 },
+});

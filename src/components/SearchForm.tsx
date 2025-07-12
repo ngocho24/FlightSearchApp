@@ -2,14 +2,8 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 
-interface SearchParams {
-  from: string;
-  to: string;
-  date: string;
-}
-
 interface SearchFormProps {
-  onSearch: (params: SearchParams) => void;
+  onSearch: () => void;
 }
 
 export default function SearchForm({ onSearch }: SearchFormProps) {
@@ -17,28 +11,18 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
   const [to, setTo] = useState('');
   const [date, setDate] = useState('');
 
-  const handleSearch = () => {
-    if (!from || !to || !date) {
-      alert('Please fill in all fields');
-      return;
-    }
-    onSearch({ from, to, date });
-  };
-
   return (
     <View style={styles.container}>
       <Input
         placeholder="From"
         value={from}
         onChangeText={setFrom}
-        autoCapitalize="words"
         containerStyle={styles.input}
       />
       <Input
         placeholder="To"
         value={to}
         onChangeText={setTo}
-        autoCapitalize="words"
         containerStyle={styles.input}
       />
       <Input
@@ -47,16 +31,21 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
         onChangeText={setDate}
         containerStyle={styles.input}
       />
-      <Button title="Search Flights" onPress={handleSearch} />
+      <Button
+        title="Search Flights"
+        onPress={onSearch}
+        buttonStyle={styles.button}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 15,
-  },
-  input: {
-    marginBottom: 15,
+  container: { marginVertical: 10 },
+  input: { marginBottom: 10 },
+  button: {
+    backgroundColor: '#2089dc',
+    borderRadius: 8,
+    paddingVertical: 12,
   },
 });
