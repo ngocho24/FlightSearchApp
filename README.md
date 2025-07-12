@@ -73,8 +73,7 @@ import { searchFlights } from '../services/mockFlights';
 
 ## 📹 Loom demo
 Watch the demo video:  
-👉 [Add Loom link here when you record](https://loom.com/)
-
+👉 [https://www.loom.com/share/2e85e176fa5c4b9d95d1788dac413d84?sid=1113887a-2a81-4156-a8b3-7ca570664ae7]
 ---
 
 ## ✏ Author
