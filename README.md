@@ -14,7 +14,7 @@ A React Native (Expo) mobile app to search flights, view details, and book — b
 - Sign up & login with Firebase
 - Search flights by route and date
 - View flight details before booking
-- Book a flight → shows confirmation
+- Book a flight → shows confirmation and navigates to profile
 - Profile screen shows your last booked flight
 
 ---
@@ -42,6 +42,9 @@ extra: {
   FIREBASE_STORAGE_BUCKET: "...",
   FIREBASE_MESSAGING_SENDER_ID: "...",
   FIREBASE_APP_ID: "...",
+  eas: {
+    projectId: "6833684e-947f-4d76-a4a3-bfa691e071d6"
+  }
 }
 ```
 
@@ -49,6 +52,11 @@ extra: {
 ```bash
 npx expo start -c
 ```
+
+---
+
+## 🌍 Live demo
+👉 [Open on Expo](https://expo.dev/accounts/elijahngocho/projects/FlightSearchApp/updates/59f94a82-dbec-4cee-83f7-50c1de50d2a9)
 
 ---
 
